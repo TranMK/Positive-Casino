@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slot Machine</title>
+    <title><div style="text-align: center"></div>Slot Machine</div></title>
     <style>
         /* Add your CSS styles here */
         .slot-result {
             font-size: 24px;
             margin-top: 20px;
+            text-align: center;
+        }
+        .header {
+            text-align: center;
+            font-size: 48px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Slot Machine</h1>
-    <button onclick="playSlotMachine()">Spin!</button>
+    <h1><div style="text-align: center">Positive Casino</div></h1>
+    <div style="text-align: center"><button onclick="playSlotMachine()">Spin for Advice!</div></button>
     <div class="slot-result" id="slot-result"></div>
 
     <script>
+        function displayHeader() {
+            var HeaderElement = document.getElementById('header');
+            HeaderElement.innerHTML = "Slot Machine";
+        }
         function spinSlotMachine() {
             var symbols = ['Cherry', 'Lemon', 'Orange', 'Plum', 'Bell', 'Bar', 'Seven'];
             var spinResult = [];
@@ -30,6 +40,7 @@
             return spinResult;
         }
 
+        //START
         function displaySpinResult(spinResult) {
             var resultElement = document.getElementById('slot-result');
             resultElement.innerHTML = '----------------<br>';
@@ -38,8 +49,59 @@
         }
 
         function playSlotMachine() {
-            var spinResult = spinSlotMachine();
-            displaySpinResult(spinResult);
+            var spins = 0
+            while (spins < 30) {
+                var spinResult = spinSlotMachine();
+                if (spins <= 10){
+                    setTimeout(displaySpinResult, 1000, spinResult);
+                } else if (spins <= 15){
+                    setTimeout(displaySpinResult, 1000, spinResult);
+                } else if (spins <= 20){
+                    setTimeout(displaySpinResult, 1000, spinResult);
+                } else if (spins <= 25){
+                    setTimeout(displaySpinResult, 1000, spinResult);
+                } else if (spins < 30){
+                    setTimeout (displaySpinResult, 1000, spinResult);
+                }
+                spins++;
+            }
+            var congratulation = getCongratulation(spinResult);
+            alert(congratulation);
+        }
+        //END
+
+        function getCongratulation(spinResult) {
+            if (spinResult.includes('Cherry') && spinResult.filter(x => x === 'Cherry').length === 2) {
+                return 'Congratulations! You got two cherries in a row! 🎁🎁';
+            } else if (spinResult.includes('Lemon') && spinResult.filter(x => x === 'Lemon').length === 2) {
+                return 'Nice! You got two lemons in a row. 🍋🍋';
+            } else if (spinResult.includes('Orange') && spinResult.filter(x => x === 'Orange').length === 2) {
+                return 'Wow, you got two oranges in a row! 🍊🍊';
+            } else if (spinResult.includes('Plum') && spinResult.filter(x => x === 'Plum').length === 2) {
+                return 'Plum for you! You got two plums in a row. 🫑🫑';
+            } else if (spinResult.includes('Bell') && spinResult.filter(x => x === 'Bell').length === 2) {
+                return 'Bells are ringing! You got two bells in a row. 🔔🔔';
+            } else if (spinResult.includes('Bar') && spinResult.filter(x => x === 'Bar').length === 2) {
+                return 'You got two bars in a row. 😕😕';
+            } else if (spinResult.includes('Seven') && spinResult.filter(x => x === 'Seven').length === 2) {
+                return 'Seven is lucky! You got two sevens in a row. 🍀🍀';
+            } else if (spinResult.includes('Cherry') && spinResult.filter(x => x === 'Cherry').length === 3) {
+                return 'Congratulations! You got three cherries in a row! 🎁🎁🎁';
+            } else if (spinResult.includes('Lemon') && spinResult.filter(x => x === 'Lemon').length === 3) {
+                return 'Nice! You got three lemons in a row. 🍋🍋🍋';
+            } else if (spinResult.includes('Orange') && spinResult.filter(x => x === 'Orange').length === 3) {
+                return 'Wow, you got three oranges in a row! 🍊🍊🍊';
+            } else if (spinResult.includes('Plum') && spinResult.filter(x => x === 'Plum').length === 3) {
+                return 'Plum for you! You got three plums in a row. 🫑🫑🫑';
+            } else if (spinResult.includes('Bell') && spinResult.filter(x => x === 'Bell').length === 3) {
+                return 'Bells are ringing! You got three bells in a row. 🔔🔔🔔';
+            } else if (spinResult.includes('Bar') && spinResult.filter(x => x === 'Bar').length === 3) {
+                return 'You got three bars in a row. 😕😕😕';
+            } else if (spinResult.includes('Seven') && spinResult.filter(x => x === 'Seven').length === 3) {
+                print('Seven is lucky! You got three sevens in a row. 🍀🍀🍀');
+            } else {
+                return 'Sorry, no winners this time. 😔';
+            }
         }
     </script>
 </body>
