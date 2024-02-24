@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine</title>
+    <style>
+        /* Add your CSS styles here */
+        .slot-result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Slot Machine</h1>
+    <button onclick="playSlotMachine()">Spin!</button>
+    <div class="slot-result" id="slot-result"></div>
+
+    <script>
+        function spinSlotMachine() {
+            var symbols = ['Cherry', 'Lemon', 'Orange', 'Plum', 'Bell', 'Bar', 'Seven'];
+            var spinResult = [];
+
+            for (var i = 0; i < 3; i++) {
+                var randomIndex = Math.floor(Math.random() * symbols.length);
+                spinResult.push(symbols[randomIndex]);
+            }
+
+            return spinResult;
+        }
+
+        function displaySpinResult(spinResult) {
+            var resultElement = document.getElementById('slot-result');
+            resultElement.innerHTML = '----------------<br>';
+            resultElement.innerHTML += '| ' + spinResult[0] + ' | ' + spinResult[1] + ' | ' + spinResult[2] + ' |<br>';
+            resultElement.innerHTML += '----------------';
+        }
+
+        function playSlotMachine() {
+            var spinResult = spinSlotMachine();
+            displaySpinResult(spinResult);
+        }
+    </script>
+</body>
+</html>
