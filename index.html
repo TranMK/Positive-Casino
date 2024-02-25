@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><div style="text-align: center"></div>Slot Machine</div></title>
     <style>
         /* Add your CSS styles here */
         .slot-result {
@@ -11,25 +10,25 @@
             margin-top: 20px;
             text-align: center;
         }
-        .header {
-            text-align: center;
-            font-size: 48px;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <h1><div style="text-align: center">Positive Casino</div></h1>
     <div style="text-align: center"><button onclick="playSlotMachine()">Spin for Advice!</div></button>
     <div class="slot-result" id="slot-result"></div>
-
+    <div style= "text-align: center; font-size: 20px"> Disclaimer: This website is not a suitable replacement for professional help. 
+        It is merely a tool to recovering addicts entertain their occasional "indulging periods" productively, as well as informing the general public about the potential dangers of gambling. </div>
+    <div style= "text-align: center; font-size: 20px"> <br> <b> SAHMSA HELPLINE: 1-800-662-4357 <br> <a href=https://www.samhsa.gov/find-help/national-helpline>https://www.samhsa.gov/find-help/national-helpline</a> <br>
+    <br> ADDITIONAL ADVICE: <br> 
+    <br> <a href=https://www.gatewayfoundation.org/addiction-blog/how-to-stop-gambling>https://www.gatewayfoundation.org/addiction-blog/how-to-stop-gambling</a> <br>
+    <br> <a href=https://www.helpguide.org/articles/addictions/gambling-addiction-and-problem-gambling.htm>https://www.helpguide.org/articles/addictions/gambling-addiction-and-problem-gambling.htm</a></b> </div>
     <script>
         function displayHeader() {
             var HeaderElement = document.getElementById('header');
             HeaderElement.innerHTML = "Slot Machine";
         }
         function spinSlotMachine() {
-            var symbols = ['Cherry', 'Lemon', 'Orange', 'Plum', 'Bell', 'Bar', 'Seven'];
+            var symbols = ['🍒', 'Lemon', '🍊', '🍇', '🔔', 'BAR', '7'];
             var spinResult = [];
 
             for (var i = 0; i < 3; i++) {
@@ -40,68 +39,90 @@
             return spinResult;
         }
 
-        //START
+
         function displaySpinResult(spinResult) {
             var resultElement = document.getElementById('slot-result');
             resultElement.innerHTML = '----------------<br>';
             resultElement.innerHTML += '| ' + spinResult[0] + ' | ' + spinResult[1] + ' | ' + spinResult[2] + ' |<br>';
-            resultElement.innerHTML += '----------------';
+            resultElement.innerHTML += '----------------<br>';
         }
-
+        function displayCongrats(congratulation) {
+            var resultElement = document.getElementById('slot-result');
+            resultElement.innerHTML += congratulation + '<br>';
+        }
+        
         function playSlotMachine() {
-            var spins = 0
-            while (spins < 30) {
+            var spins = 0;
+            var spinInterval = setInterval(function() {
                 var spinResult = spinSlotMachine();
-                if (spins <= 10){
-                    setTimeout(displaySpinResult, 1000, spinResult);
-                } else if (spins <= 15){
-                    setTimeout(displaySpinResult, 1000, spinResult);
-                } else if (spins <= 20){
-                    setTimeout(displaySpinResult, 1000, spinResult);
-                } else if (spins <= 25){
-                    setTimeout(displaySpinResult, 1000, spinResult);
-                } else if (spins < 30){
-                    setTimeout (displaySpinResult, 1000, spinResult);
-                }
+                displaySpinResult(spinResult);
                 spins++;
-            }
-            var congratulation = getCongratulation(spinResult);
-            alert(congratulation);
+
+                if (spins >= 30) {
+                    clearInterval(spinInterval);
+                    var congratulation = getCongratulation(spinResult);
+                    displayCongrats(congratulation);
+                }
+            }, 100);
         }
-        //END
 
         function getCongratulation(spinResult) {
-            if (spinResult.includes('Cherry') && spinResult.filter(x => x === 'Cherry').length === 2) {
-                return 'Congratulations! You got two cherries in a row! 🎁🎁';
-            } else if (spinResult.includes('Lemon') && spinResult.filter(x => x === 'Lemon').length === 2) {
-                return 'Nice! You got two lemons in a row. 🍋🍋';
-            } else if (spinResult.includes('Orange') && spinResult.filter(x => x === 'Orange').length === 2) {
-                return 'Wow, you got two oranges in a row! 🍊🍊';
-            } else if (spinResult.includes('Plum') && spinResult.filter(x => x === 'Plum').length === 2) {
-                return 'Plum for you! You got two plums in a row. 🫑🫑';
-            } else if (spinResult.includes('Bell') && spinResult.filter(x => x === 'Bell').length === 2) {
-                return 'Bells are ringing! You got two bells in a row. 🔔🔔';
-            } else if (spinResult.includes('Bar') && spinResult.filter(x => x === 'Bar').length === 2) {
-                return 'You got two bars in a row. 😕😕';
-            } else if (spinResult.includes('Seven') && spinResult.filter(x => x === 'Seven').length === 2) {
-                return 'Seven is lucky! You got two sevens in a row. 🍀🍀';
-            } else if (spinResult.includes('Cherry') && spinResult.filter(x => x === 'Cherry').length === 3) {
-                return 'Congratulations! You got three cherries in a row! 🎁🎁🎁';
-            } else if (spinResult.includes('Lemon') && spinResult.filter(x => x === 'Lemon').length === 3) {
-                return 'Nice! You got three lemons in a row. 🍋🍋🍋';
-            } else if (spinResult.includes('Orange') && spinResult.filter(x => x === 'Orange').length === 3) {
-                return 'Wow, you got three oranges in a row! 🍊🍊🍊';
-            } else if (spinResult.includes('Plum') && spinResult.filter(x => x === 'Plum').length === 3) {
-                return 'Plum for you! You got three plums in a row. 🫑🫑🫑';
-            } else if (spinResult.includes('Bell') && spinResult.filter(x => x === 'Bell').length === 3) {
-                return 'Bells are ringing! You got three bells in a row. 🔔🔔🔔';
-            } else if (spinResult.includes('Bar') && spinResult.filter(x => x === 'Bar').length === 3) {
-                return 'You got three bars in a row. 😕😕😕';
-            } else if (spinResult.includes('Seven') && spinResult.filter(x => x === 'Seven').length === 3) {
-                print('Seven is lucky! You got three sevens in a row. 🍀🍀🍀');
-            } else {
-                return 'Sorry, no winners this time. 😔';
+            var fail = [`You may be inclined to gamble for a better result to balance out the loss. The truth, however, is that the average gain from a jackpot is statistically insufficient to balance out the average loss. If you're losing more than you can afford, it’s better to simply stop.`,
+        `Gambler’s fallacy is the belief that an event is less or more likely to occur due to a previous event. This is common for gamblers, who feel they’re more likely to win after repeated losses.`,
+        `Gambler’s fallacy is the belief that an event is less or more likely to occur due to a previous event. This is common for gamblers, who feel they’re more likely to win after repeated losses.`,
+        `Most online gambling websites have a way to set a spending limit. Check the site you use for gambling and enable this feature to help stop the habit.`,
+        `Know the game you’re playing. Try to be knowledgeable of the rates of various outcomes from a slots machine, or any kind of probability-based games in general.`,
+        `Gamblers are prone to superstitious thinking, which makes them think random coincidences have meaning. Remember that luck has nothing to do with what happens!`,
+        `Sometimes gamblers believe that they have control over the game. This is untrue, and is often a result of feelings of loss of control in their lives.`,
+        `The sunk cost fallacy is the phenomenon where a person is reluctant to abandon their current strategy or action because they have invested heavily in it, even when it is clear that dropping it would be much more beneficial.`,
+        `You may be inclined to gamble for a better result to balance out the loss. The truth, however, is that the average gain from a jackpot is statistically insufficient to balance out the average loss. If you're losing more than you can afford, it’s better to simply stop.`,
+        `You may be inclined to gamble for a better result to balance out the loss. The truth, however, is that the average gain from a jackpot is statistically insufficient to balance out the average loss. If you're losing more than you can afford, it’s better to simply stop.`];
+            
+        
+            var twoofakind = [`Gambler’s fallacy is the belief that an event is less or more likely to occur due to a previous event. This is common for gamblers, who feel they’re more likely to win after repeated losses.`,
+        `Most online gambling websites have a way to set a spending limit. Check the site you use for gambling and enable this feature to help stop the habit.`,
+        `Know the game you’re playing. Try to be knowledgeable of the rates of various outcomes from a slots machine, or any kind of probability-based games in general.`,
+        `Gamblers are prone to superstitious thinking, which makes them think random coincidences have meaning. Remember that luck has nothing to do with what happens!`,
+        `Sometimes gamblers believe that they have control over the game. This is untrue, and is often a result of feelings of loss of control in their lives.`,
+        `The sunk cost fallacy is the phenomenon where a person is reluctant to abandon their current strategy or action because they have invested heavily in it, even when it is clear that dropping it would be much more beneficial.`,
+        `You may be motivated to bet for a better result than your current one. However, you are much more likely to lose and end up in a worse place than winning the jackpot. Even then, the gains from the grand prize might not be able to balance out the loss.`,
+        `You may be motivated to bet for a better result than your current one. However, you are much more likely to lose and end up in a worse place than winning the jackpot. Even then, the gains from the grand prize might not be able to balance out the loss.`,
+        `You may be motivated to bet for a better result than your current one. However, you are much more likely to lose and end up in a worse place than winning the jackpot. Even then, the gains from the grand prize might not be able to balance out the loss.`];
+            
+        
+            
+            var threeofakind = [`Gambler’s fallacy is the belief that an event is less or more likely to occur due to a previous event. This is common for gamblers, who feel they’re more likely to win after repeated losses.`,
+        `Most online gambling websites have a way to set a spending limit. Check the site you use for gambling and enable this feature to help stop the habit.`,
+        `Know the game you’re playing. Try to be knowledgeable of the rates of various outcomes from a slots machine, or any kind of probability-based games in general.`,
+        `Gamblers are prone to superstitious thinking, which makes them think random coincidences have meaning. Remember that luck has nothing to do with what happens!`,
+        `Sometimes gamblers believe that they have control over the game. This is untrue, and is often a result of feelings of loss of control in their lives.`,
+        `The sunk cost fallacy is the phenomenon where a person is reluctant to abandon their current strategy or action because they have invested heavily in it, even when it is clear that dropping it would be much more beneficial.`,
+        `Winning the jackpot will give you a dopamine rush and easily convinces you to continue gambling. Try to resist the urge and consider your circumstances carefully. How much have you lost and gained in total? Is it feasible to continue gambling?
+        Only when you have logically and calmly assessed the situation should you make the decision.`,
+        `Winning the jackpot will give you a dopamine rush and easily convinces you to continue gambling. Try to resist the urge and consider your circumstances carefully. How much have you lost and gained in total? Is it feasible to continue gambling?
+        Only when you have logically and calmly assessed the situation should you make the decision.`,
+        `Winning the jackpot will give you a dopamine rush and easily convinces you to continue gambling. Try to resist the urge and consider your circumstances carefully. How much have you lost and gained in total? Is it feasible to continue gambling?
+        Only when you have logically and calmly assessed the situation should you make the decision.`];
+            const randomIndex= Math.floor(Math.random() * fail.length);
+            const randomIndex2= Math.floor(Math.random() * twoofakind.length);
+            const randomIndex3= Math.floor(Math.random() * threeofakind.length);
+            Array(100);
+            var total = Array.length;
+            for (var i = 0; i < fail.length; i++) {
+                var count = spinResult.filter(x => x === fail[i]).length;
+                if (count === 3) {
+                    return threeofakind[randomIndex2];
+                }
             }
+    
+            for (var i = 0; i < fail.length; i++) {
+                var count = spinResult.filter(x => x === fail[i]).length;
+                if (count === 2) {
+                    return twoofakind[randomIndex3];
+                }
+            }
+    
+            return fail[randomIndex];
         }
     </script>
 </body>
